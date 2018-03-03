@@ -1,6 +1,6 @@
 // Written by Lucas Chung in 2018 for the Baha'i Fast
 // Used with the sunrise-sunset.org API
-let jsons = [];
+let dateCounter = 0;
 let sunrises = {
   hms: [],
   value: [],
@@ -17,32 +17,43 @@ let lat = 40.693348;
 let lng = -73.979782;
 let testTime = "11:24:59 PM";
 
-function setup() {
-  for (let i = 0; i < fastDates.length; i) {
+function preload() {
+  for (let i = 0; i < fastDates.length; i++) {
     let url = "https://api.sunrise-sunset.org/json?lat=" + addZeroes(lat) + "&lng=" +
       addZeroes(lng) + "&date=2018-03-" + fastDates[i];
     // let url = "https://api.sunrise-sunset.org/json?lat=36.7201600&lng=-4.4203400&date=2018-03-21";
     loadJSON(url, logging);
     // print(url);
   }
-  console.log(jsons);
+}
 
-  // console.log(sunrises.hms);
-  // console.log(sunsets.hms);
+function setup() {
+  print("sunrises");
+  console.log(sunrises.hms);
+  print("sunsets");
+  console.log(sunsets.hms);
 
-  // print(testTime);
-  // print(timeValues(testTime));
-  //
-  // // console.log(timeBreakdown);
+  sunrises.hms.sort();
+  sunrises.hms.reverse();
+  sunsets.hms.sort();
 
-  // for (let i = 0; i < fastDates.length; i++) {
-  //   sunrises.value[i] = timeValues(sunrises.hms[i]);
-  //   sunsets.value[i] = timeValues(sunsets.hms[i]);
-  // }
-  //
-  // console.log(sunrises.value);
-  // console.log(sunsets.value);
+  print("sunrises sorted");
+  console.log(sunrises.hms);
+  print("sunsets sorted");
+  console.log(sunsets.hms);
 
+  print(testTime);
+  print(timeValues(testTime));
+  
+  // console.log(timeBreakdown);
+
+  for (let i = 0; i < fastDates.length; i++) {
+    sunrises.value[i] = timeValues(sunrises.hms[i]);
+    sunsets.value[i] = timeValues(sunsets.hms[i]);
+  }
+  
+  console.log(sunrises.value);
+  console.log(sunsets.value);
 }
 
 function draw() {
@@ -50,15 +61,16 @@ function draw() {
 }
 
 function logging(ssData) {
-  jsons.push(ssData);
+  sunrises.hms[dateCounter] = ssData.results.sunrise;
+  sunsets.hms[dateCounter] = ssData.results.sunset;
+
   // sunrises.hms.push(ssData.results.sunrise);
   // sunsets.hms.push(ssData.results.sunset);
-  // console.log(ssData);
+  console.log(ssData);
   // print(ssData.results.sunrise);
   // print(ssData.results.sunset);
-  //
-  // let hours = ssData.results.sunrise.split(':');
-  // print(hours);
+  
+  dateCounter++;
 }
 
 function addZeroes(n) {
