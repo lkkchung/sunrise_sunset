@@ -13,19 +13,25 @@ let fastDates = [
   "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",
   "13", "14", "15", "16", "17", "18", "19", "20"
 ];
+
+let dateCounter = 0;
+
 let lat = 40.693348;
 let lng = -73.979782;
 let testTime = "11:24:59 PM";
 
-function setup() {
-  for (let i = 0; i < fastDates.length; i) {
+function preload() {
+  for (let i = 0; i < fastDates.length; i++) {
     let url = "https://api.sunrise-sunset.org/json?lat=" + addZeroes(lat) + "&lng=" +
       addZeroes(lng) + "&date=2018-03-" + fastDates[i];
     // let url = "https://api.sunrise-sunset.org/json?lat=36.7201600&lng=-4.4203400&date=2018-03-21";
     loadJSON(url, logging);
     // print(url);
   }
-  console.log(jsons);
+}
+
+function setup() {
+    console.log(jsons);
 
   // console.log(sunrises.hms);
   // console.log(sunsets.hms);
