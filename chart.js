@@ -6,10 +6,10 @@ function chart(){
     for (let i = 0; i < fastDates.length; i++) {
         stroke(0);
         strokeWeight(10);
-        line(i * 50, 1440);
+        line(i * 50, 0, i * 50, 1440);
 
         stroke(255, 20, 20);
         strokeWeight(15);
-        line(sunrises.value[i], sunsets.value[i]);
+        line(i * 50, sunrises.value[i], i * 50, sunsets.value[i]);
     }
 }
