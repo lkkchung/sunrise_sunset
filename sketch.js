@@ -54,6 +54,10 @@ function setup() {
   
   console.log(sunrises.value);
   console.log(sunsets.value);
+
+  //======== drawing chart ==========
+  chart();
+
 }
 
 function draw() {
