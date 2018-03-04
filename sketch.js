@@ -16,6 +16,7 @@ let fastDates = [
 let lat = -55;
 let lng = -70;
 let testTime = "11:24:59 PM";
+let timeZone = 5;
 
 function preload() {
   for (let i = 0; i < fastDates.length; i++) {
@@ -95,3 +96,30 @@ function timeValues(_tt) {
   // let newVal = _tt;
   return newVal;
 }
+
+// try this to sort the JSON values:
+// var people = [
+//   {
+//       name: 'a75',
+//       item1: false,
+//       item2: false
+//   },
+//   {
+//       name: 'z32',
+//       item1: true,
+//       item2: false
+//   },
+//   {
+//       name: 'e77',
+//       item1: false,
+//       item2: false
+//   }];
+  
+//   function sortByKey(array, key) {
+//       return array.sort(function(a, b) {
+//           var x = a[key]; var y = b[key];
+//           return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+//       });
+//   }
+  
+//   people = sortByKey(people, 'name');
